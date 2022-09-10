@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  loading: false,
   jobs: [],
   filteredJobs: [],
   jobsToShow: [],
@@ -18,6 +19,9 @@ export const jobSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
     setJobs: (state, action) => {
       state.jobs = action.payload;
     },
@@ -33,7 +37,7 @@ export const jobSlice = createSlice({
   },
 });
 
-export const { setJobs, setJobstoshow, setCurrent, setFiltered } =
+export const { setLoading, setJobs, setJobstoshow, setCurrent, setFiltered } =
   jobSlice.actions;
 
 // The function below is called a selector and allows us to select a value from

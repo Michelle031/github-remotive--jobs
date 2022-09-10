@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFiltered, setJobs, setJobstoshow } from "./features/jobSlice";
+import {
+  setFiltered,
+  setJobs,
+  setJobstoshow,
+  setLoading,
+} from "./features/jobSlice";
 import "./App.css";
 import Home from "./components/Home";
 import { Route, Routes } from "react-router-dom";
@@ -12,13 +17,14 @@ function App() {
 
   useEffect(() => {
     let res;
+    dispatch(setLoading(true));
     const fetchResults = async () => {
       res = await fetch(`https://remotive.com/api/remote-jobs?search=${search}`)
         .then((res) => res.json())
         .catch((err) => console.log(err));
       dispatch(setFiltered(res.jobs));
       dispatch(setJobs(res.jobs));
-      console.log(res.jobs.map((job) => job.candidate_required_location));
+      dispatch(setLoading(false));
     };
     fetchResults();
   }, [search]);

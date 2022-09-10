@@ -6,7 +6,7 @@ import { setFiltered } from "../features/jobSlice";
 
 function Main() {
   const inputRef = useRef(null);
-  const { jobs, jobsToShow } = useSelector((state) => state.jobs);
+  const { loading, jobs, jobsToShow } = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const [location, setLocation] = useState("USA");
@@ -104,7 +104,9 @@ function Main() {
         </div>
       </div>
       <div className="right flex flex-col space-y-3 mb-4 flex-[0.72] justify-center">
-        {jobsToShow.length > 0 ? (
+        {loading ? (
+          <h1 className="text-2xl">Loading ...</h1>
+        ) : jobsToShow.length > 0 ? (
           jobsToShow.map((job) => <Job key={job.id} job={job} />)
         ) : (
           <h1 className="text-[#334680] text-center">Jobs not Found</h1>
