@@ -1,56 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFiltered, setJobs, setJobstoshow } from "./features/jobSlice";
+import "./App.css";
+import Home from "./components/Home";
+import { Route, Routes } from "react-router-dom";
+import JobPage from "./components/JobPage";
 
 function App() {
+  const dispatch = useDispatch();
+  const { search } = useSelector((state) => state.search);
+
+  useEffect(() => {
+    let res;
+    const fetchResults = async () => {
+      res = await fetch(`https://remotive.com/api/remote-jobs?search=${search}`)
+        .then((res) => res.json())
+        .catch((err) => console.log(err));
+      dispatch(setFiltered(res.jobs));
+      dispatch(setJobs(res.jobs));
+      console.log(res.jobs.map((job) => job.candidate_required_location));
+    };
+    fetchResults();
+  }, [search]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="App bg-[#F6F7FB] p-[12px] lg:px-[120px] lg:py-[32px]">
+      <h1 className="font-bold text-[#282538] mb-[32px] text-2xl">
+        Remotive <span className="font-light">Jobs</span>
+      </h1>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/jobs/:id" exact element={<JobPage />} />
+      </Routes>
     </div>
   );
 }
