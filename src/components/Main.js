@@ -38,7 +38,7 @@ function Main() {
     dispatch(setFiltered(jobs?.filter((job) => job.job_type === "full_time")));
   };
   return (
-    <div className="flex flex-col lg:flex-row mt-10 justify-between">
+    <div className="flex flex-col lg:flex-row mt-10 px-6 lg:px-0 justify-between">
       <div className="left w-full flex-[0.23] sticky mb-4 lg:mb-0">
         <h3 className="flex items-center font-medium text-sm text-[#334680]">
           <input type="checkbox" checked={isChecked} onChange={fulltime} /> Full

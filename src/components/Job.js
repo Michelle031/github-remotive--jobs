@@ -22,12 +22,12 @@ function Job({ job }) {
           <h4 className="text-xs">{job.company_name}</h4>
           <h2 className="font-normal text-md lg:text-lg">{job.title}</h2>
           {job.job_type === "full_time" && (
-            <p className="border border-[#334680] p-[6px] rounded w-[65px] text-xs">
+            <p className="hidden lg:block border border-[#334680] p-[6px] rounded w-[65px] text-xs">
               Full time
             </p>
           )}
         </div>
-        <div className="flex text-xs text-[#B9BDCF] font-medium place-self-end space-x-4 lg:space-x-6">
+        <div className="hidden lg:flex text-xs text-[#B9BDCF] font-medium place-self-end space-x-4 lg:space-x-6">
           <p className="flex  items-center">
             <Public sx={{ marginRight: "5px" }} />{" "}
             {job.candidate_required_location}

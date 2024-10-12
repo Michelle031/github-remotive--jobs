@@ -59,11 +59,6 @@ input[type="checkbox"] {
 .desc {
   text-align: left !important;
 }
-.desc  * {
-  text-align: left !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
 .desc img {
   display: none !important;
 }

@@ -5,8 +5,8 @@ import { setCurrent, setJobstoshow } from "../features/jobSlice";
 
 const Pagination = () => {
   const pageNos = [];
-  const [pageNumberLimit] = useState(5);
-  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
+  const [pageNumberLimit] = useState(2);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(2);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
   const { filteredJobs, current } = useSelector((state) => state.jobs);
   const dispatch = useDispatch();

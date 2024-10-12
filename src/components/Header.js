@@ -1,4 +1,4 @@
-import { WorkOutline } from "@mui/icons-material";
+import { WorkOutline, Search } from "@mui/icons-material";
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setSearch } from "../features/searchSlice";
@@ -13,7 +13,7 @@ function Header() {
   };
   return (
     <div>
-      <div className="header px-[18px] md:px-[200px] py-[42px] rounded-lg">
+      <div className="header px-5 lg:px-[200px] lg:py-10 py-5 mx-3 lg:mx-0 rounded-lg">
         <form
           className="flex bg-white text-[#B9BDCF] p-2 rounded-lg"
           onSubmit={handleSumbit}
@@ -27,8 +27,11 @@ function Header() {
               ref={inputRef}
             />
           </div>
-          <button className="bg-[#1E86FF] rounded text-white py-[14px] px-[48px] hover:bg-[#1E86FF99] transition duration-100 ease-in-out">
+          <button className="hidden lg:block bg-[#1E86FF] rounded text-white py-3 px-12 hover:bg-[#1E86FF99] transition duration-100 ease-in-out">
             Search
+          </button>
+          <button className="lg:hidden bg-[#1E86FF] rounded text-white p-4 hover:bg-[#1E86FF99] transition duration-100 ease-in-out">
+            <Search />
           </button>
         </form>
       </div>
